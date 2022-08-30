@@ -1,6 +1,6 @@
-# Filename: /srv/exatorent/docker-compose.yml
+# Filepath: /srv/vpn-exatorent/docker-compose.yml
 #
-# A docker conatiner to serve torrent files
+# A docker conatiner to act as a torrent seeded
 #
 # run docker-compose up -d to start the container
 

@@ -1,10 +1,8 @@
-# Filename: /srv/exatorent/docker-compose.yml
+# Filepath: /srv/exatorent/docker-compose.yml
 #
-# A docker conatiner to serve torrent files
+# A docker conatiner to act as a torrent seeded
 #
 # run docker-compose up -d to start the container
-
-
 
 version: "3.7"
 services:
@@ -16,8 +14,8 @@ services:
         - NET_ADMIN
       environment:
         - VPN_SERVICE_PROVIDER=protonvpn
-        - OPENVPN_USER=7xKQ9S2oD5cStV33
-        - OPENVPN_PASSWORD=kJhh6pO58wYaqR8EKb0ShpuTzwPleJg4
+        - OPENVPN_USER=<openvpn username>
+        - OPENVPN_PASSWORD=<openvpn pass>
         - SERVER_COUNTRIES=Netherlands
         - FREE_ONLY=on
 
@@ -25,9 +23,6 @@ services:
       networks:
         - mynetwork
       ports:
-        # - 9091:9091
-        # - 51413:51413
-        # - 51413:51413/udp
         - 5000:5000
         - 42069:42069
 

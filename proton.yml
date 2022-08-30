@@ -1,0 +1,48 @@
+# Filename: /srv/exatorent/docker-compose.yml
+#
+# A docker conatiner to serve torrent files
+#
+# run docker-compose up -d to start the container
+
+version: '3.4'
+services:
+  protonvpn:
+    image: ghcr.io/tprasadtp/protonvpn:latest
+    container_name: protonvpn
+    restart: always
+
+    cap_add:
+      - NET_ADMIN
+
+    environment:
+      PROTONVPN_USERNAME: <openvpn username>
+      PROTONVPN_PASSWORD: <openvpn pass>
+      PROTONVPN_SERVER: NL
+      PROTONVPN_PROTOCOL: udp
+      PROTONVPN_TIER: 0
+
+    networks:
+      - internet
+      - proxy
+
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    ports:
+        - 5000:5000
+        - 42069:42069
+
+  exatorrent:
+      image: ghcr.io/varbhat/exatorrent:latest
+      container_name: exatorrent
+      restart: always
+
+      mem_limit: 256mb
+
+      network_mode: service:protonvpn
+      depends_on:
+        - protonvpn
+
+networks:
+  internet:
+  proxy:
+    internal: true

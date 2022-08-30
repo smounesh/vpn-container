@@ -1,0 +1,53 @@
+# Filename: /srv/exatorent/docker-compose.yml
+#
+# A docker conatiner to serve torrent files
+#
+# run docker-compose up -d to start the container
+
+
+
+version: "3.7"
+services:
+    vpn:
+      container_name: vpn
+      image: qmcgaw/gluetun
+      restart: always
+      cap_add:
+        - NET_ADMIN
+      environment:
+        - VPN_SERVICE_PROVIDER=protonvpn
+        - OPENVPN_USER=7xKQ9S2oD5cStV33
+        - OPENVPN_PASSWORD=kJhh6pO58wYaqR8EKb0ShpuTzwPleJg4
+        - SERVER_COUNTRIES=Netherlands
+        - FREE_ONLY=on
+
+      # network_mode: host
+      networks:
+        - mynetwork
+      ports:
+        # - 9091:9091
+        # - 51413:51413
+        # - 51413:51413/udp
+        - 5000:5000
+        - 42069:42069
+
+    exatorrent:
+      image: ghcr.io/varbhat/exatorrent:latest
+      container_name: exatorrent
+      restart: always
+
+      mem_limit: 256mb
+
+      network_mode: service:vpn
+      depends_on:
+        - vpn
+
+      # ports:
+      #   - 5000:5000
+      #   - 42069:42069
+      # volumes:
+      #     - ./data:/exa/exadir
+
+networks:
+  mynetwork:                                 
+    external: true

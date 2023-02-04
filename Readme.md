@@ -4,8 +4,8 @@
 
 ## Application access
 
-* The application access using proton-vpn container ip if ihe container running on the same machine or local machine ip or using public ip
+* The application access using proton-vpn container ip if the container running on the same machine or local machine ip or using public ip
 
 ## Proxy settings
 
-* Use the vpn containe ip or service name 
+* Use the vpn container ip or service name 

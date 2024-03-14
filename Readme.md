@@ -3,7 +3,7 @@
 Routing a a Torrent container network through a Vpn Container :
 </h1>
 
-<h3+> Step 1: Set up the VPN container: </h3>
+<h3> Step 1: Set up the VPN container: </h3>
 
   Install and configure the ProtonVPN container to act as your VPN service provider. Ensure it's configured to route traffic through the VPN tunnel.
 
